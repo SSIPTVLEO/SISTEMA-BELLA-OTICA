@@ -1,0 +1,11 @@
+{
+  "name": "sistema-bella-otica",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "react-scripts build"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

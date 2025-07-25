@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bella Ótica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-2px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(2px);
+            }
+        }
+        .animate-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center p-4">
+    <!-- Background decorativo -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute top-40 left-40 w-80 h-80 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Container principal -->
+    <div class="relative w-full max-w-md">
+        <!-- Card de login -->
+        <div class="glass-effect rounded-2xl shadow-2xl p-8 transform transition-all duration-300 hover:scale-105">
+            <!-- Logo/Ícone -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                    Bella Ótica
+                </h1>
+                <p class="text-gray-600 text-sm">Faça login para acessar sua conta</p>
+            </div>
+
+            <!-- Mensagem de erro -->
+            <div id="erro-container" class="hidden bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-6 animate-shake">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                    <span id="erro-texto" class="text-sm"></span>
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <form id="login-form" class="space-y-6">
+                <!-- Campo E-mail -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">
+                        E-mail
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                            </svg>
+                        </div>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="seu@email.com"
+                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-gray-50/50 backdrop-blur-sm"
+                            required
+                        />
+                    </div>
+                    <p id="email-erro" class="text-xs text-red-600 flex items-center mt-1 hidden">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        E-mail inválido
+                    </p>
+                </div>
+
+                <!-- Campo Senha -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">
+                        Senha
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <input
+                            type="password"
+                            id="senha"
+                            placeholder="Mínimo 6 caracteres"
+                            class="w-full pl-10 pr-12 py-3 border-2 border-gray-200 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-gray-50/50 backdrop-blur-sm"
+                            required
+                        />
+                        <button
+                            type="button"
+                            id="toggle-senha"
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                        >
+                            <svg id="eye-closed" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <svg id="eye-open" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p id="senha-erro" class="text-xs text-red-600 flex items-center mt-1 hidden">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        A senha deve ter pelo menos 6 caracteres
+                    </p>
+                </div>
+
+                <!-- Botão de login -->
+                <button
+                    type="submit"
+                    id="btn-login"
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
+                >
+                    <svg id="login-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    <span id="login-text">Entrar</span>
+                    <svg id="loading-icon" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Links adicionais -->
+            <div class="mt-6 text-center">
+                <a href="#" class="text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200 hover:underline">
+                    Esqueceu sua senha?
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-6">
+            <p class="text-xs text-gray-500">
+                © 2025 Bella Ótica. Todos os direitos reservados.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis globais
+        let emailValido = true;
+        let senhaValida = true;
+        let carregando = false;
+
+        // Elementos do DOM
+        const emailInput = document.getElementById('email');
+        const senhaInput = document.getElementById('senha');
+        const toggleSenha = document.getElementById('toggle-senha');
+        const eyeClosed = document.getElementById('eye-closed');
+        const eyeOpen = document.getElementById('eye-open');
+        const loginForm = document.getElementById('login-form');
+        const btnLogin = document.getElementById('btn-login');
+        const loginIcon = document.getElementById('login-icon');
+        const loginText = document.getElementById('login-text');
+        const loadingIcon = document.getElementById('loading-icon');
+        const erroContainer = document.getElementById('erro-container');
+        const erroTexto = document.getElementById('erro-texto');
+        const emailErro = document.getElementById('email-erro');
+        const senhaErro = document.getElementById('senha-erro');
+
+        // Função para validar email
+        function validarEmail(valor) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            emailValido = regex.test(valor);
+            
+            if (emailValido) {
+                emailInput.classList.remove('border-red-300', 'focus:border-red-500');
+                emailInput.classList.add('border-gray-200', 'focus:border-blue-500');
+                emailErro.classList.add('hidden');
+            } else {
+                emailInput.classList.remove('border-gray-200', 'focus:border-blue-500');
+                emailInput.classList.add('border-red-300', 'focus:border-red-500');
+                emailErro.classList.remove('hidden');
+            }
+            
+            atualizarBotao();
+        }
+
+        // Função para validar senha
+        function validarSenha(valor) {
+            senhaValida = valor.length >= 6;
+            
+            if (senhaValida) {
+                senhaInput.classList.remove('border-red-300', 'focus:border-red-500');
+                senhaInput.classList.add('border-gray-200', 'focus:border-blue-500');
+                senhaErro.classList.add('hidden');
+            } else {
+                senhaInput.classList.remove('border-gray-200', 'focus:border-blue-500');
+                senhaInput.classList.add('border-red-300', 'focus:border-red-500');
+                senhaErro.classList.remove('hidden');
+            }
+            
+            atualizarBotao();
+        }
+
+        // Função para atualizar estado do botão
+        function atualizarBotao() {
+            const emailPreenchido = emailInput.value.trim() !== '';
+            const senhaPreenchida = senhaInput.value.trim() !== '';
+            
+            if (emailValido && senhaValida && emailPreenchido && senhaPreenchida && !carregando) {
+                btnLogin.disabled = false;
+            } else {
+                btnLogin.disabled = true;
+            }
+        }
+
+        // Função para mostrar erro
+        function mostrarErro(mensagem) {
+            erroTexto.textContent = mensagem;
+            erroContainer.classList.remove('hidden');
+            setTimeout(() => {
+                erroContainer.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Função para simular login
+        function simularLogin() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Simula sucesso ou erro baseado no email
+                    if (emailInput.value === 'admin@bellaotica.com' && senhaInput.value === '123456') {
+                        resolve();
+                    } else {
+                        reject(new Error('Credenciais inválidas. Verifique e tente novamente.'));
+                    }
+                }, 2000);
+            });
+        }
+
+        // Event listeners
+        emailInput.addEventListener('input', (e) => {
+            validarEmail(e.target.value);
+        });
+
+        senhaInput.addEventListener('input', (e) => {
+            validarSenha(e.target.value);
+        });
+
+        toggleSenha.addEventListener('click', () => {
+            const tipo = senhaInput.type === 'password' ? 'text' : 'password';
+            senhaInput.type = tipo;
+            
+            if (tipo === 'text') {
+                eyeClosed.classList.add('hidden');
+                eyeOpen.classList.remove('hidden');
+            } else {
+                eyeClosed.classList.remove('hidden');
+                eyeOpen.classList.add('hidden');
+            }
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!emailValido || !senhaValida) return;
+            
+            carregando = true;
+            atualizarBotao();
+            
+            // Atualizar UI para estado de carregamento
+            loginIcon.classList.add('hidden');
+            loadingIcon.classList.remove('hidden');
+            loginText.textContent = 'Entrando...';
+            
+            try {
+                await simularLogin();
+                // Sucesso - redirecionar ou mostrar mensagem
+                alert('Login realizado com sucesso! Redirecionando...');
+                // window.location.href = '/dashboard';
+            } catch (error) {
+                mostrarErro(error.message);
+            } finally {
+                carregando = false;
+                atualizarBotao();
+                
+                // Restaurar UI
+                loginIcon.classList.remove('hidden');
+                loadingIcon.classList.add('hidden');
+                loginText.textContent = 'Entrar';
+            }
+        });
+
+        // Inicialização
+        atualizarBotao();
+    </script>
+</body>
+</html>
+
