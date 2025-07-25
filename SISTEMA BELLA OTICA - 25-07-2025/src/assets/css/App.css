@@ -114,11 +114,16 @@
 }
 
 @layer base {
-  * {
-    @apply border-border ring ring-opacity-50;
+  .bg-background {
+    background-color: #ffffff; /* ou qualquer cor de fundo desejada */
   }
-  body {
-    @apply bg-background text-foreground;
+
+  .border-border {
+    border-color: #e5e7eb; /* cinza claro, estilo Tailwind */
+  }
+
+  .outline-ring\/50 {
+    outline: 2px solid rgba(59, 130, 246, 0.5); /* azul-500 com 50% opacidade */
   }
 }
 
