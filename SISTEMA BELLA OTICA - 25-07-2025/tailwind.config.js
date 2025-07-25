@@ -2,12 +2,15 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
-   extend: {
+    extend: {
       colors: {
-        border: "#E5E7EB" // cor clara padrão, por exemplo
+        border: "#E5E7EB",
+        background: "#ffffff",
+        ring: {
+          50: "rgba(59, 130, 246, 0.5)",
+        }
       }
     }
   },
   plugins: [require("tailwindcss-animate")],
 }
-
